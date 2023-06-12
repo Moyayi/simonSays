@@ -77,11 +77,6 @@
 }
 
 
-.jugar{
-    margin: auto;
-    transform: rotate();
-
-}
 .jugar button{
     font-size: 24px;
     padding: 1rem 2rem;
@@ -89,7 +84,7 @@
     border-radius: 10px;
     background-color: #ee5782;
     color: white;
-    animation-name: prueba;
+    animation-name: animacionBoton;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
@@ -106,7 +101,7 @@
     display: none;
 }
 
-@keyframes prueba {
+@keyframes animacionBoton {
     0%{
         transform: rotateZ(0deg);
     }
