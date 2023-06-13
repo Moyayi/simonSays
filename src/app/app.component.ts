@@ -29,8 +29,11 @@ export class AppComponent implements OnInit{
   }
 
   async checkOrder(num : number) {
+    let audio = new Audio()
+    audio.src = this.colores[num].sonido;
+    audio.load();
+    audio.play()
     if( !this.juego ) return 
-
     this.player.push(num)
     for(let i = 0 ; i < this.player.length; i++){
       if( this.player[i] !== this.simon[i]) {
@@ -58,7 +61,7 @@ export class AppComponent implements OnInit{
       audio.src = this.colores[this.simon[i]].sonido;
       audio.load();
       audio.play();
-      
+
       await this.delay(550)
       
       color?.classList.remove(this.colores[this.simon[i]].clase)
