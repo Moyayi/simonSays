@@ -1,3 +1,6 @@
+# ATTENTION
+This project IS NOT responsive. Recommended resolution 1920x1080 or zoom out the website.
+
 # SimonSays
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.3.

@@ -26,6 +26,22 @@
   </button>
 </div>
 
-<ng-template #jugando>
-  Estamos jugando xikiyoooo
+<ng-template #jugando >
+
+  <div class="d-flex justify-content-between mt-5">
+    <div>
+      <h3>Puntuación actual : {{ puntuacion }}</h3>
+    </div>
+    <div *ngIf="turno ; else jugador">
+      <h3>Turno de Simon</h3>
+    </div>
+    <ng-template #jugador>
+      <h3>Turno del Jugador</h3>
+    </ng-template>
+    <div>
+      <h3>Máxima puntuación : {{ maxPuntuacion}}</h3>
+    </div>
+  </div>
+  
+
 </ng-template>

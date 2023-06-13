@@ -11,6 +11,9 @@ export class AppComponent implements OnInit{
   simon : number[] = [];
   player : number [] = [];
   juego : boolean = false;
+  puntuacion : number = 0;
+  maxPuntuacion : number = 0;
+  turno : boolean = true;
 
   delay : Function = (ms : number) : Promise<void> => {
     return  new Promise( res => setTimeout(res,ms))
@@ -24,8 +27,10 @@ export class AppComponent implements OnInit{
   ]
 
   ngOnInit(): void {
-    this.simon.push(Math.round(Math.random()*3))
-
+    console.log(localStorage.getItem("maxPuntuacion"))
+    if( localStorage.getItem("maxPuntuacion") !== null){
+      this.maxPuntuacion = Number(localStorage.getItem("maxPuntuacion"))
+    }
   }
 
   async checkOrder(num : number) {
@@ -46,13 +51,13 @@ export class AppComponent implements OnInit{
       await this.delay(1000)
       this.simonSays()
     }
-
   }
 
 
   async simonSays(){
+    this.turno = true
     this.simon.push(Math.round(Math.random()*3))
-
+    this.puntuacion++;
     for(let i = 0 ; i < this.simon.length ; i++){
       let color = document.getElementById(this.simon[i].toString())
 
@@ -68,6 +73,8 @@ export class AppComponent implements OnInit{
 
       await this.delay(500)
     }
+    this.turno = false
+
   }
 
   empezarJuego(){
@@ -76,7 +83,14 @@ export class AppComponent implements OnInit{
   }
   
   defeated(){
+    debugger
+    if ( Number(localStorage.getItem("maxPuntuacion")) < this.puntuacion ){
+      localStorage.setItem("maxPuntuacion", this.puntuacion.toString())
+      this.maxPuntuacion = Number(localStorage.getItem("maxPuntuacion"))
+    }
+
     this.simon = [Math.round(Math.random()*3)]
+    this.puntuacion = 0;
     this.player = []
     this.juego = false
 
