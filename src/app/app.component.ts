@@ -27,7 +27,6 @@ export class AppComponent implements OnInit{
   ]
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("maxPuntuacion"))
     if( localStorage.getItem("maxPuntuacion") !== null){
       this.maxPuntuacion = Number(localStorage.getItem("maxPuntuacion"))
     }
@@ -40,12 +39,11 @@ export class AppComponent implements OnInit{
     audio.play()
     if( !this.juego ) return 
     this.player.push(num)
-    for(let i = 0 ; i < this.player.length; i++){
-      if( this.player[i] !== this.simon[i]) {
-        this.defeated()
-        return 
-      }
+
+    if( this.player[this.player.length-1] !== this.simon[this.player.length-1]){
+      this.defeated()
     }
+
     if( this.player.length === this.simon.length){
       this.player = []
       await this.delay(1000)
@@ -83,7 +81,6 @@ export class AppComponent implements OnInit{
   }
   
   defeated(){
-    debugger
     if ( Number(localStorage.getItem("maxPuntuacion")) < this.puntuacion ){
       localStorage.setItem("maxPuntuacion", this.puntuacion.toString())
       this.maxPuntuacion = Number(localStorage.getItem("maxPuntuacion"))
