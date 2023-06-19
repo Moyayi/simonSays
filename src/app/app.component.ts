@@ -42,6 +42,7 @@ export class AppComponent implements OnInit{
 
     if( this.player[this.player.length-1] !== this.simon[this.player.length-1]){
       this.defeated()
+      document.getElementById("ulost")?.classList.remove("invisible")
     }
 
     if( this.player.length === this.simon.length){
@@ -87,10 +88,13 @@ export class AppComponent implements OnInit{
     }
 
     this.simon = [Math.round(Math.random()*3)]
-    this.puntuacion = 0;
     this.player = []
     this.juego = false
 
   }
 
+  cerrarCartel() : void { 
+    document.getElementById("ulost")?.classList.add("invisible")
+    this.puntuacion = 0;
+  }
 }
